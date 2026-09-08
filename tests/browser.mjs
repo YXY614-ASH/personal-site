@@ -4,6 +4,7 @@ import { createRequire } from 'node:module';
 import path from 'node:path';
 import { build, root, routes } from '../scripts/build.mjs';
 import { createSiteServer } from '../scripts/serve.mjs';
+import { site, releaseLabel } from '../src/data/site.mjs';
 
 const requireTool = createRequire(process.env.TOOL_NODE_MODULES ? path.join(process.env.TOOL_NODE_MODULES, 'tools.cjs') : import.meta.url);
 const { chromium } = requireTool('playwright');
@@ -19,7 +20,7 @@ const browser = await chromium.launch({
   headless: true,
   ...(process.env.BROWSER_EXECUTABLE ? { executablePath: process.env.BROWSER_EXECUTABLE } : {})
 });
-const report = { browser: browser.version(), pages: [], interactions: [], errors: [] };
+const report = { version: site.version, browser: browser.version(), pages: [], interactions: [], errors: [] };
 
 try {
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1, reducedMotion: 'reduce' });
@@ -56,6 +57,12 @@ try {
       assert.equal(check.emptyLinks, 0, `Unnamed link: ${route.path}`);
       assert.deepEqual(check.textOverflow, [], `Text overflow: ${route.path}, ${viewport.width}`);
       if (check.heroBottom !== null) assert.ok(check.heroBottom < viewport.height, `Hero hides next section at ${viewport.width}`);
+      if (['home', 'about', 'resume'].includes(route.active)) {
+        const profile = await page.locator('main').innerText();
+        assert.ok(profile.includes('本科'), `Missing education level: ${route.path}`);
+        assert.ok(profile.includes('电气工程及其自动化'), `Missing major: ${route.path}`);
+        assert.ok(!profile.includes('教育信息待补充'), `Outdated education placeholder: ${route.path}`);
+      }
       report.pages.push({ path: route.path, viewport, ...check });
       if ([1440, 390].includes(viewport.width)) await page.screenshot({ path: path.join(artifacts, `${route.path.replaceAll('/', '-').replace('.html', '')}-${viewport.width}.png`), fullPage: true });
     }
@@ -107,6 +114,12 @@ try {
   await page.getByRole('button', { name: '返回顶部' }).click();
   assert.equal(await page.evaluate(() => window.scrollY), 0);
   report.interactions.push('Nested 404 recovery and back-to-top');
+
+  await page.locator('.footer-bottom').getByRole('link', { name: '更新记录' }).click();
+  await page.waitForURL('**/projects/personal-site/index.html#version-history');
+  assert.equal(await page.locator('#version-history').isVisible(), true);
+  assert.ok((await page.locator('#version-history').innerText()).includes(releaseLabel));
+  report.interactions.push('Current release history link and education content across all viewports');
 
   const noJs = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1440, height: 1000 } });
   const noJsPage = await noJs.newPage();

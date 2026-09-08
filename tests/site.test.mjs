@@ -5,9 +5,21 @@ import path from 'node:path';
 import { root, routes } from '../scripts/build.mjs';
 import { createSiteServer } from '../scripts/serve.mjs';
 import { escapeHtml } from '../src/components/layout.mjs';
-import { site } from '../src/data/site.mjs';
+import { site, releaseLabel } from '../src/data/site.mjs';
 
 const dist = path.join(root, 'dist');
+
+test('package, build metadata, page footers and project status agree on the release', async () => {
+  const pkg = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
+  const buildInfo = JSON.parse(await readFile(path.join(dist, 'build-info.json'), 'utf8'));
+  assert.equal(site.version, pkg.version);
+  assert.equal(buildInfo.version, pkg.version);
+  for (const route of routes) {
+    const html = await readFile(path.join(dist, route.path), 'utf8');
+    assert.ok(html.includes(`<span class="footer-version">${releaseLabel}</span>`), route.path);
+  }
+  assert.equal(site.projects.find(project => project.id === 'personal-site').status, `${releaseLabel} 已实现`);
+});
 
 test('all pages have unique titles, a single heading, Chinese metadata and no incomplete links', async () => {
   const titles = new Set();
@@ -35,6 +47,11 @@ test('every internal page, script, image and stylesheet reference resolves in th
       const target = path.resolve(path.dirname(filename), reference.split('#')[0]);
       assert.ok(target.startsWith(dist + path.sep), `${route.path}: ${reference}`);
       await access(target);
+      const fragment = reference.split('#')[1];
+      if (fragment) {
+        const targetHtml = await readFile(target, 'utf8');
+        assert.ok(targetHtml.includes(`id="${fragment}"`), `${route.path}: missing anchor ${reference}`);
+      }
     }
     for (const [, icon] of html.matchAll(/<use href="#([^"]+)"/g)) {
       assert.ok(html.includes(`id="${icon}"`), `${route.path}: ${icon}`);

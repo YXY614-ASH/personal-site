@@ -3,6 +3,7 @@ import { readFile, stat } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { build, root } from './build.mjs';
+import { releaseLabel } from '../src/data/site.mjs';
 
 const types = { '.html': 'text/html; charset=utf-8', '.css': 'text/css; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.png': 'image/png', '.txt': 'text/plain; charset=utf-8', '.pdf': 'application/pdf' };
 
@@ -47,5 +48,5 @@ if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.me
     if (error.code === 'EADDRINUSE' && port < 4200) server.listen(++port, '127.0.0.1');
     else { console.error(error.message); process.exit(1); }
   });
-  server.listen(port, '127.0.0.1', () => console.log(`Portfolio V0.1: http://127.0.0.1:${port}/`));
+  server.listen(port, '127.0.0.1', () => console.log(`Portfolio ${releaseLabel}: http://127.0.0.1:${port}/`));
 }

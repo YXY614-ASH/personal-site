@@ -1,4 +1,4 @@
-import { site, navigation } from '../data/site.mjs';
+import { site, navigation, releaseLabel } from '../data/site.mjs';
 
 export function escapeHtml(value) {
   return String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[character]);
@@ -7,6 +7,10 @@ export function escapeHtml(value) {
 export const icon = (name, className = '') => `<svg class="icon ${className}" aria-hidden="true"><use href="#icon-${name}"></use></svg>`;
 export const tags = values => `<div class="tags">${values.map(value => `<span>${escapeHtml(value)}</span>`).join('')}</div>`;
 export const link = (href, label, className = 'text-link', external = false) => `<a class="${className}" href="${href}"${external ? ' target="_blank" rel="noopener noreferrer"' : ''}>${label}${icon(external ? 'arrow-up-right' : 'arrow-right')}</a>`;
+
+export function educationDetails() {
+  return `<dl class="education-facts"><div><dt>学历</dt><dd>${escapeHtml(site.education.level)}</dd></div><div><dt>专业</dt><dd>${escapeHtml(site.education.major)}</dd></div></dl>`;
+}
 
 export function pageHeading(eyebrow, title, description) {
   return `<header class="page-heading"><span class="eyebrow">${eyebrow}</span><h1>${title}<span class="green-dot">.</span></h1><p>${description}</p></header>`;
@@ -42,7 +46,7 @@ export function layout({ title, active, base, content, symbols, head = '', descr
     <nav id="mobile-nav" class="mobile-nav" aria-label="移动端导航" hidden>${navigation.map(item => `<a href="${base}${item.path}"${active === item.id ? ' aria-current="page"' : ''}>${item.label}${icon('arrow-up-right')}</a>`).join('')}</nav>
   </header>
   <main id="main">${content}</main>
-  <footer class="site-footer"><div class="container footer-top"><a class="brand" href="${base}index.html">wjy<span>_</span></a><p>保持好奇，持续构建。</p>${link(site.github, '在 GitHub 找到我', 'text-link', true)}</div><div class="container footer-bottom"><span>© 2026 ${site.name}. Built with intention.</span><span>个人作品集 <span class="footer-version">V0.1</span></span><a href="${base}notes/building-v0-1/index.html">更新记录 ${icon('arrow-up-right')}</a></div></footer>
+  <footer class="site-footer"><div class="container footer-top"><a class="brand" href="${base}index.html">wjy<span>_</span></a><p>保持好奇，持续构建。</p>${link(site.github, '在 GitHub 找到我', 'text-link', true)}</div><div class="container footer-bottom"><span>© 2026 ${site.name}. Built with intention.</span><span>个人作品集 <span class="footer-version">${releaseLabel}</span></span><a href="${base}projects/personal-site/index.html#version-history">更新记录 ${icon('arrow-up-right')}</a></div></footer>
   <button class="back-top icon-button" aria-label="返回顶部" title="返回顶部" hidden>${icon('arrow-up')}</button>
 </body>
 </html>`;

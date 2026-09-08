@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 import { layout } from '../src/components/layout.mjs';
 import * as pages from '../src/pages/pages.mjs';
+import { site } from '../src/data/site.mjs';
 
 export const root = fileURLToPath(new URL('../', import.meta.url));
 export const routes = [
@@ -34,7 +35,7 @@ export async function build() {
     await writeFile(target, layout({ ...route, base, content, symbols, head }));
   }
   await writeFile(path.join(output, '.nojekyll'), '');
-  await writeFile(path.join(output, 'build-info.json'), JSON.stringify({ version: '0.1.0', routes: routes.map(route => route.path) }, null, 2));
+  await writeFile(path.join(output, 'build-info.json'), JSON.stringify({ version: site.version, routes: routes.map(route => route.path) }, null, 2));
   console.log(`Built ${routes.length} pages into dist/`);
 }
 
