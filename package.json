@@ -1,0 +1,16 @@
+{
+  "name": "yxy-personal-site",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Wu Jiayi personal portfolio - a dependency-free static website",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/serve.mjs",
+    "preview": "node scripts/serve.mjs",
+    "test": "node --test tests/site.test.mjs",
+    "check": "node scripts/build.mjs && node --test tests/site.test.mjs",
+    "test:browser": "node tests/browser.mjs"
+  }
+}

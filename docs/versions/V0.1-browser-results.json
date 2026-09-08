@@ -1,0 +1,554 @@
+{
+  "browser": "152.0.4191.66",
+  "pages": [
+    {
+      "path": "index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": 646
+    },
+    {
+      "path": "about/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "notes/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "resume/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/knowledge-agent/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/personal-site/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "notes/building-v0-1/index.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "404.html",
+      "viewport": {
+        "width": 1440,
+        "height": 1000
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "index.html",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": 686
+    },
+    {
+      "path": "about/index.html",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/index.html",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "notes/index.html",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "resume/index.html",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/knowledge-agent/index.html",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/personal-site/index.html",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "notes/building-v0-1/index.html",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "404.html",
+      "viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "index.html",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": 646
+    },
+    {
+      "path": "about/index.html",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/index.html",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "notes/index.html",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "resume/index.html",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/knowledge-agent/index.html",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/personal-site/index.html",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "notes/building-v0-1/index.html",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "404.html",
+      "viewport": {
+        "width": 768,
+        "height": 1024
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "index.html",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": 602
+    },
+    {
+      "path": "about/index.html",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/index.html",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "notes/index.html",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "resume/index.html",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/knowledge-agent/index.html",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/personal-site/index.html",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "notes/building-v0-1/index.html",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "404.html",
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "index.html",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": 602
+    },
+    {
+      "path": "about/index.html",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/index.html",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "notes/index.html",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "resume/index.html",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/knowledge-agent/index.html",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "projects/personal-site/index.html",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "notes/building-v0-1/index.html",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    },
+    {
+      "path": "404.html",
+      "viewport": {
+        "width": 320,
+        "height": 740
+      },
+      "overflow": false,
+      "images": true,
+      "emptyLinks": 0,
+      "textOverflow": [],
+      "heroBottom": null
+    }
+  ],
+  "interactions": [
+    "Mobile navigation opens, closes with Escape and navigates correctly",
+    "All project filters and result counts",
+    "Note search, category filter, empty state, reset and article navigation",
+    "Resume download truthfully unavailable before a real PDF is supplied",
+    "Nested 404 recovery and back-to-top",
+    "Core content and navigation remain available without JavaScript"
+  ],
+  "errors": []
+}
