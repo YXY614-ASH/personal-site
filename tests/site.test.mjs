@@ -80,6 +80,16 @@ test('the chatbot project exposes its verified V0.5 capabilities without claimin
   assert.ok(html.includes('href="https://github.com/YXY614-ASH/chatbot"'));
 });
 
+test('the homepage explains the chatbot project beyond its card summary', async () => {
+  const html = await readFile(path.join(dist, 'index.html'), 'utf8');
+  for (const section of ['项目介绍', '技术栈', '迭代过程', '核心亮点', '解决问题', '工程思路']) {
+    assert.match(html, new RegExp(`<h3>${section}</h3>`));
+  }
+  assert.match(html, /V0\.3/);
+  assert.match(html, /V0\.5/);
+  assert.ok(html.includes('href="http://127.0.0.1:7861/"'));
+});
+
 test('image assets and JavaScript stay within the initial performance budget', async () => {
   assert.ok((await stat(path.join(dist, 'assets/workspace.webp'))).size < 600_000);
   assert.ok((await stat(path.join(dist, 'assets/site-preview.webp'))).size < 250_000);
