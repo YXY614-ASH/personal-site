@@ -27,11 +27,17 @@ export function layout({ title, active, base, content, symbols, head = '', descr
   <meta charset="UTF-8">
   ${head}
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="author" content="${escapeHtml(site.name)}">
   <meta name="description" content="${escapeHtml(description)}">
   <meta name="theme-color" content="#f8f9f7">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="${escapeHtml(site.name)}个人作品集">
   <meta property="og:title" content="${escapeHtml(title)} | ${site.name}">
   <meta property="og:description" content="${escapeHtml(description)}">
+  <meta property="og:image" content="${base}assets/workspace.webp">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="./index.html">
+  <link rel="manifest" href="${base}site.webmanifest">
   <title>${escapeHtml(title)} | ${site.name}个人作品集</title>
   <link rel="icon" href="${base}assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="${base}assets/styles.css">

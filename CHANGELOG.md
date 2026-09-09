@@ -1,5 +1,22 @@
 # 更新日志
 
+## V0.5 - 2026-09-09
+
+### 正式交付
+
+- 完成全站最终回归：页面、链接、跳转、响应式布局、图片、笔记、404、构建和本地服务均纳入检查。
+- 新增发布审计脚本 `npm run audit`，检查版本一致性、页面元数据、静态发现文件、外部链接安全属性和潜在凭据。
+- 增加 `site.webmanifest` 与 `robots.txt`，统一 author、canonical、Open Graph 和 Twitter 卡片元数据。
+- 本地服务增加 CSP、Permissions-Policy，保留 gzip、ETag、304、HEAD 和缺失构建 503 恢复。
+- 个人网站项目记录补齐 V0.5 正式发布；简历没有真实 PDF 时仍保持不可下载。
+
+### 验收边界
+
+- `npm run check`：13 项测试通过，发布审计通过。
+- 浏览器回归：10 个页面、5 组视口、13 组交互，零浏览器错误；公开仓库跳转使用无登录会话验证。
+- chatbot 接入回归：6 项通过，原 chatbot 测试至少 15 项通过。
+- 仍仅本地验收，不发布 GitHub Pages / Vercel；真实模型生成和正式 PDF 简历待后续提供。
+
 ## V0.4.1 - 2026-09-09
 
 - 未认证 GitHub API 确认 personal-site 和 chatbot 均已公开。

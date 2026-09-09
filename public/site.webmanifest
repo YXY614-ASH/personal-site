@@ -1,0 +1,11 @@
+{
+  "name": "吴佳诣个人技术作品集",
+  "short_name": "吴佳诣",
+  "lang": "zh-CN",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8f9f7",
+  "theme_color": "#f8f9f7",
+  "description": "吴佳诣的个人技术作品集，展示 AI 应用、Web 开发、技术笔记与学习方向。"
+}

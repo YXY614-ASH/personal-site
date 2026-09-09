@@ -1,6 +1,6 @@
 import { notes } from './notes.mjs';
 
-const version = '0.4.1';
+const version = '0.5.0';
 export const releaseLabel = `V${version.replace(/\.0$/, '')}`;
 
 export const site = {

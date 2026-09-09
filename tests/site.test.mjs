@@ -36,6 +36,10 @@ test('all pages have unique titles, a single heading, Chinese metadata and no in
     const title = html.match(/<title>(.*?)<\/title>/)[1];
     assert.ok(!titles.has(title), title);
     titles.add(title);
+    assert.match(html, /<meta name="author" content="吴佳诣">/);
+    assert.match(html, /<meta property="og:image" content="[^"]+assets\/workspace\.webp">/);
+    assert.match(html, /<link rel="canonical" href="\.\/index\.html">/);
+    assert.match(html, /<link rel="manifest" href="[^"]+site\.webmanifest">/);
   }
 });
 
@@ -123,6 +127,12 @@ test('every note generates an article and valid section anchors from its content
   }
 });
 
+test('final release metadata and static discovery files are complete', async () => {
+  assert.equal(site.version, '0.5.0');
+  assert.equal(JSON.parse(await readFile(path.join(dist, 'site.webmanifest'), 'utf8')).start_url, './index.html');
+  assert.match(await readFile(path.join(dist, 'robots.txt'), 'utf8'), /User-agent: \*/);
+});
+
 test('HTML escaping handles markup characters', () => {
   assert.equal(escapeHtml('<script>"a" & \'b\'</script>'), '&lt;script&gt;&quot;a&quot; &amp; &#39;b&#39;&lt;/script&gt;');
 });
@@ -145,6 +155,9 @@ test('HTTP routes, subdirectory hosting, missing routes and non-GET requests res
   assert.match(await missing.text(), /href="\/personal-site\/index.html"/);
   const post = await fetch(`${origin}/personal-site/`, { method: 'POST' });
   assert.equal(post.status, 405);
+  const headers = await fetch(`${origin}/personal-site/`);
+  assert.match(headers.headers.get('content-security-policy'), /default-src 'self'/);
+  assert.equal(headers.headers.get('permissions-policy'), 'camera=(), microphone=(), geolocation=()');
   const traversal = await fetch(`${origin}/personal-site/..%5cpackage.json`);
   assert.equal(traversal.status, 404);
   for (const route of ['%E0%A4%A', 'notes/%00', '不存在的页面']) {

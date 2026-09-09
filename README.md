@@ -1,6 +1,6 @@
 # 吴佳诣的个人技术作品集
 
-V0.4.1 公开仓库入口更新版本。吴佳诣，就读于昆明理工大学津桥学院，电气工程及其自动化专业本科，预计 2027 年毕业，主学嵌入式开发、C 语言和 PLC 自动化技术。围绕个人介绍、项目实践、技术笔记与履历建立持续迭代的技术空间。
+V0.5 正式发布版本。吴佳诣，就读于昆明理工大学津桥学院，电气工程及其自动化专业本科，预计 2027 年毕业，主学嵌入式开发、C 语言和 PLC 自动化技术。围绕个人介绍、项目实践、技术笔记与履历建立持续迭代的技术空间。
 
 ## 本地运行
 
@@ -28,7 +28,7 @@ npm run preview  # 构建并启动本地预览
 | 技术笔记 | `/notes/` | 多词搜索、分类、日期排序、URL 状态保留、两篇工程笔记 |
 | 个人简历 | `/resume/` | 资料预览；真实 PDF 尚未提供 |
 | AI 项目 | `/projects/knowledge-agent/` | chatbot V0.5 能力、架构和本机 Demo 入口 |
-| 网站项目 | `/projects/personal-site/` | 当前项目说明与 V0.1 至 V0.4 版本记录 |
+| 网站项目 | `/projects/personal-site/` | 当前项目说明与 V0.1 至 V0.5 版本记录 |
 | 开发笔记 | `/notes/building-v0-1/` | V0.1 历史架构与工程记录 |
 | AI 笔记 | `/notes/chatbot-tools/` | chatbot 工具边界、页码引用与本地能力记录 |
 | 异常页面 | `/404.html` | 返回首页与导航恢复 |
@@ -64,6 +64,8 @@ dist/               构建产物，不直接提交 Git
 
 GitHub Pages 与 Vercel 配置已准备，具体开通步骤和权限前提见 [部署说明](docs/DEPLOYMENT.md)。本地运行成功不等同于公网部署成功。
 
+- [V0.5 版本文档](docs/versions/V0.5.md)
+- [V0.5 测试报告](docs/versions/V0.5-test-report.md)
 - [V0.4.1 版本文档](docs/versions/V0.4.1.md)
 - [V0.4.1 测试报告](docs/versions/V0.4.1-test-report.md)
 - [V0.4 版本文档](docs/versions/V0.4.md)
@@ -76,7 +78,7 @@ GitHub Pages 与 Vercel 配置已准备，具体开通步骤和权限前提见 [
 - [更新日志](CHANGELOG.md)
 - [素材来源](docs/ASSETS.md)
 
-仓库：`git@github.com:YXY614-ASH/personal-site.git`。V0.4.1 独立提交并归档为 `V0.4.1` 标签，保留此前标签和历史。按用户选择仅在本地验收，不进行网站公网发布。
+仓库：`git@github.com:YXY614-ASH/personal-site.git`。V0.5 独立提交并归档为 `V0.5` 标签，保留此前标签和历史。按用户选择仅在本地验收，不进行网站公网发布。
 
 ## 浏览器回归
 
@@ -88,4 +90,4 @@ $env:BROWSER_EXECUTABLE = 'C:\Program Files (x86)\Microsoft\Edge\Application\mse
 npm run test:browser
 ```
 
-测试覆盖十个页面、五组视口、交互、降级场景和真实截图，结果输出到 `artifacts/`。测试默认不修改已跟踪的预览图；需要刷新预览图时显式设置 `UPDATE_PREVIEW=1`。浏览器测试工具不参与站点生产构建。其他机器缺少这些工具时，按开发规则先确认再安装。
+测试覆盖十个页面、五组视口、交互、降级场景、真实截图和公开仓库跳转，结果输出到 `artifacts/`。`npm run check` 还会运行发布审计：检查版本、页面元数据、静态发现文件、外链安全属性和源码凭据模式。测试默认不修改已跟踪的预览图；需要刷新预览图时显式设置 `UPDATE_PREVIEW=1`。浏览器测试工具不参与站点生产构建。其他机器缺少这些工具时，按开发规则先确认再安装。
