@@ -152,6 +152,8 @@ h1, h2, h3, p, li, a { overflow-wrap: anywhere; }
 .tags { display: flex; flex-wrap: wrap; gap: 8px; }
 .tags span { background: #edf0e9; color: #6f7868; font-size: 10px; padding: 4px 9px; border-radius: 3px; line-height: 1.5; }
 .project-info .tags { margin-top: 18px; }
+.project-source { margin-top: 14px; }
+.project-source .text-link { min-height: 44px; font-size: 12px; }
 .project-story { background: #f0f3ed; border-block: 1px solid #e3e7dd; }
 .story-heading { margin-bottom: 38px; }
 .story-heading h2 { max-width: 620px; }

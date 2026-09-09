@@ -1,6 +1,6 @@
 import { notes } from './notes.mjs';
 
-const version = '0.4.0';
+const version = '0.4.1';
 export const releaseLabel = `V${version.replace(/\.0$/, '')}`;
 
 export const site = {
@@ -9,7 +9,7 @@ export const site = {
   version,
   github: 'https://github.com/YXY614-ASH',
   repository: 'https://github.com/YXY614-ASH/personal-site',
-  repositoryPublic: false,
+  repositoryPublic: true,
   description: '吴佳诣的个人技术作品集。昆明理工大学津桥学院电气工程及其自动化专业本科，预计 2027 年毕业，主学嵌入式开发、C 语言和 PLC 自动化技术。',
   resume: null,
   education: {
@@ -50,7 +50,7 @@ export const site = {
       category: 'web',
       status: `${releaseLabel} 已实现`,
       path: 'projects/personal-site/index.html',
-      source: null,
+      source: 'https://github.com/YXY614-ASH/personal-site',
       demo: 'index.html'
     }
   ],

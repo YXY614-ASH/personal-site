@@ -60,11 +60,19 @@ test('every internal page, script, image and stylesheet reference resolves in th
   }
 });
 
-test('no private project URLs or fabricated resume download appear in public markup', async () => {
+test('public source links are available and external links remain safe without inventing a resume download', async () => {
   for (const route of routes) {
     const html = await readFile(path.join(dist, route.path), 'utf8');
-    assert.ok(!html.includes(`href="${site.repository}"`));
+    assert.ok(!html.includes('仓库当前需授权访问'));
+    assert.ok(!html.includes('源码仓库暂未公开'));
     for (const link of html.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)) assert.match(link[0], /rel="noopener noreferrer"/);
+  }
+  assert.equal(site.repositoryPublic, true);
+  for (const project of site.projects) {
+    for (const route of ['index.html', 'projects/index.html', project.path]) {
+      const html = await readFile(path.join(dist, route), 'utf8');
+      assert.ok(html.includes(`href="${project.source}"`), `${route}: ${project.source}`);
+    }
   }
   const resume = await readFile(path.join(dist, 'resume/index.html'), 'utf8');
   assert.match(resume, /disabled/);
@@ -73,7 +81,7 @@ test('no private project URLs or fabricated resume download appear in public mar
 
 test('the chatbot project exposes its verified V0.5 capabilities without claiming a public demo', async () => {
   const html = await readFile(path.join(dist, 'projects/knowledge-agent/index.html'), 'utf8');
-  for (const value of ['V0.5 Agent', 'PDF 资料问答', '题目解析卡', '学习计划卡', '课程助手 Agent', '安全计算器', '本机 Demo', '仓库当前需授权访问']) {
+  for (const value of ['V0.5 Agent', 'PDF 资料问答', '题目解析卡', '学习计划卡', '课程助手 Agent', '安全计算器', '本机 Demo', '公开源码仓库']) {
     assert.match(html, new RegExp(value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
   }
   assert.ok(html.includes('href="http://127.0.0.1:7861/"'));

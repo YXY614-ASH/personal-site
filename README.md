@@ -1,6 +1,6 @@
 # 吴佳诣的个人技术作品集
 
-V0.4 功能完善与交互优化版本。吴佳诣，就读于昆明理工大学津桥学院，电气工程及其自动化专业本科，预计 2027 年毕业，主学嵌入式开发、C 语言和 PLC 自动化技术。围绕个人介绍、项目实践、技术笔记与履历建立持续迭代的技术空间。
+V0.4.1 公开仓库入口更新版本。吴佳诣，就读于昆明理工大学津桥学院，电气工程及其自动化专业本科，预计 2027 年毕业，主学嵌入式开发、C 语言和 PLC 自动化技术。围绕个人介绍、项目实践、技术笔记与履历建立持续迭代的技术空间。
 
 ## 本地运行
 
@@ -58,12 +58,14 @@ dist/               构建产物，不直接提交 Git
 
 院校、学历、专业、预计毕业年份和主学方向已根据用户提供的信息录入，统一维护在 `education` 与 `studyAreas` 中。没有推断入学年份、成绩、技能熟练度或具体硬件经验。正式 PDF 简历和 AI 项目运行资料尚未提供，简历下载按钮保持禁用。
 
-个人网站仓库暂未公开；chatbot 项目保留已接入的仓库链接与授权访问提示。本机 Demo 使用 `npm run demo:chatbot` 启动，路径和密钥配置见 [接入说明](docs/versions/V0.3.md)。
+2026-09-09 通过未认证 GitHub API 确认 [personal-site](https://github.com/YXY614-ASH/personal-site) 和 [chatbot](https://github.com/YXY614-ASH/chatbot) 均为 public。首页、项目列表和项目详情页提供对应源码入口；顶部 GitHub 链接指向个人主页。本机 Demo 使用 `npm run demo:chatbot` 启动，路径和密钥配置见 [接入说明](docs/versions/V0.3.md)。
 
 ## 部署与版本
 
 GitHub Pages 与 Vercel 配置已准备，具体开通步骤和权限前提见 [部署说明](docs/DEPLOYMENT.md)。本地运行成功不等同于公网部署成功。
 
+- [V0.4.1 版本文档](docs/versions/V0.4.1.md)
+- [V0.4.1 测试报告](docs/versions/V0.4.1-test-report.md)
 - [V0.4 版本文档](docs/versions/V0.4.md)
 - [V0.4 测试报告](docs/versions/V0.4-test-report.md)
 - [V0.3 版本文档](docs/versions/V0.3.md)
@@ -74,7 +76,7 @@ GitHub Pages 与 Vercel 配置已准备，具体开通步骤和权限前提见 [
 - [更新日志](CHANGELOG.md)
 - [素材来源](docs/ASSETS.md)
 
-仓库：`git@github.com:YXY614-ASH/personal-site.git`。V0.4 独立提交并归档为 `V0.4` 标签，保留此前标签和历史。按用户选择仅在本地验收，不进行公网发布。
+仓库：`git@github.com:YXY614-ASH/personal-site.git`。V0.4.1 独立提交并归档为 `V0.4.1` 标签，保留此前标签和历史。按用户选择仅在本地验收，不进行网站公网发布。
 
 ## 浏览器回归
 

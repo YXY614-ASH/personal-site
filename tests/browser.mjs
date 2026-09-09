@@ -200,6 +200,35 @@ try {
   await enhancedPage.waitForURL('**/projects/personal-site/index.html');
   report.interactions.push('Failed project image displays a fallback while its project link remains usable');
   await enhanced.close();
+  if (process.env.CHECK_GITHUB_LINKS === '1') {
+    const destinations = new Map();
+    const recordNavigation = response => {
+      if (response.request().resourceType() === 'document' && response.url().startsWith('https://github.com/')) destinations.set(response.url(), response.status());
+    };
+    context.on('response', recordNavigation);
+    report.repositoryChecks = [];
+    const cases = [
+      { route: 'index.html', selector: '.github-link', destination: site.github },
+      ...site.projects.map(project => ({ route: 'index.html', selector: `.project-source a[href="${project.source}"]`, destination: project.source })),
+      ...site.projects.map(project => ({ route: project.path, selector: '.project-links a[target="_blank"]', destination: project.source }))
+    ];
+    for (const width of [1440, 390]) {
+      await page.setViewportSize({ width, height: 1000 });
+      for (const check of cases) {
+        await page.goto(origin + check.route);
+        const popupOpened = page.waitForEvent('popup');
+        await page.locator(check.selector).click();
+        const popup = await popupOpened;
+        await popup.waitForLoadState('domcontentloaded');
+        assert.equal(popup.url(), check.destination);
+        assert.equal(destinations.get(check.destination), 200);
+        report.repositoryChecks.push({ page: check.route, width, destination: popup.url(), status: 200 });
+        await popup.close();
+      }
+    }
+    context.off('response', recordNavigation);
+    report.interactions.push('Logged-out GitHub navigation from the header, homepage source links and project detail links on desktop and mobile');
+  }
   assert.deepEqual(report.errors, [], 'Browser errors or failed resources');
   await writeFile(path.join(artifacts, 'browser-report.json'), JSON.stringify(report, null, 2));
   console.log(`Browser validation passed: ${report.pages.length} page/viewport checks; ${report.interactions.length} interaction groups; zero browser errors.`);
