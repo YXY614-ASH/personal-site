@@ -1,6 +1,6 @@
 # 吴佳诣的个人技术作品集
 
-V0.3 chatbot 项目接入版本。吴佳诣，就读于昆明理工大学津桥学院，电气工程及其自动化专业本科，预计 2027 年毕业，主学嵌入式开发、C 语言和 PLC 自动化技术。围绕个人介绍、项目实践、技术笔记与履历建立持续迭代的技术空间。
+V0.4 功能完善与交互优化版本。吴佳诣，就读于昆明理工大学津桥学院，电气工程及其自动化专业本科，预计 2027 年毕业，主学嵌入式开发、C 语言和 PLC 自动化技术。围绕个人介绍、项目实践、技术笔记与履历建立持续迭代的技术空间。
 
 ## 本地运行
 
@@ -22,14 +22,15 @@ npm run preview  # 构建并启动本地预览
 
 | 页面 | 地址 | 当前状态 |
 | --- | --- | --- |
-| 首页 | `/` | 姓名、院校、学历与专业、预计毕业时间、主学方向、项目与笔记入口 |
+| 首页 | `/` | 个人资料、六项 chatbot 项目拆解、响应式首图、项目与笔记入口 |
 | 关于我 | `/about/` | 介绍、技术方向与教育背景 |
 | 项目作品 | `/projects/` | 分类筛选，两个项目展示入口 |
-| 技术笔记 | `/notes/` | 搜索、分类、空状态与一篇版本开发笔记 |
+| 技术笔记 | `/notes/` | 多词搜索、分类、日期排序、URL 状态保留、两篇工程笔记 |
 | 个人简历 | `/resume/` | 资料预览；真实 PDF 尚未提供 |
 | AI 项目 | `/projects/knowledge-agent/` | chatbot V0.5 能力、架构和本机 Demo 入口 |
-| 网站项目 | `/projects/personal-site/` | 当前项目说明与 V0.1 / V0.2 / V0.2.1 版本记录 |
+| 网站项目 | `/projects/personal-site/` | 当前项目说明与 V0.1 至 V0.4 版本记录 |
 | 开发笔记 | `/notes/building-v0-1/` | V0.1 历史架构与工程记录 |
+| AI 笔记 | `/notes/chatbot-tools/` | chatbot 工具边界、页码引用与本地能力记录 |
 | 异常页面 | `/404.html` | 返回首页与导航恢复 |
 
 页面链接使用明确的 `index.html`，兼容静态托管和 GitHub Pages 仓库子目录。
@@ -53,16 +54,18 @@ dist/               构建产物，不直接提交 Git
 
 ## 内容维护
 
-修改 `src/data/site.mjs` 可更新姓名、学历、专业、账号、项目和笔记数据；正文模板位于 `src/pages/pages.mjs`。新增页面需要同步添加 `scripts/build.mjs` 路由。发布时同步更新 `package.json` 与内容数据中的版本号，自动校验会检查二者及页面页脚、构建信息的一致性。
+修改 `src/data/site.mjs` 可更新个人资料和项目。笔记集中维护在 `src/data/notes.mjs`：每篇包含唯一 slug、日期、分类、标签和 sections 正文，构建自动生成列表、文章路由、目录和相关阅读，无需手工添加文章路由。正文按纯文本转义，代码块使用 `code` 字段。发布时同步更新 `package.json` 与内容数据中的版本号，自动校验会检查二者及页面页脚、构建信息的一致性。
 
 院校、学历、专业、预计毕业年份和主学方向已根据用户提供的信息录入，统一维护在 `education` 与 `studyAreas` 中。没有推断入学年份、成绩、技能熟练度或具体硬件经验。正式 PDF 简历和 AI 项目运行资料尚未提供，简历下载按钮保持禁用。
 
-仓库通过 SSH 可访问，但匿名 GitHub API 返回 404。站点因此只提供已验证的 GitHub 个人主页链接，尚未公开的项目源码地址不输出到公开页面。
+个人网站仓库暂未公开；chatbot 项目保留已接入的仓库链接与授权访问提示。本机 Demo 使用 `npm run demo:chatbot` 启动，路径和密钥配置见 [接入说明](docs/versions/V0.3.md)。
 
 ## 部署与版本
 
 GitHub Pages 与 Vercel 配置已准备，具体开通步骤和权限前提见 [部署说明](docs/DEPLOYMENT.md)。本地运行成功不等同于公网部署成功。
 
+- [V0.4 版本文档](docs/versions/V0.4.md)
+- [V0.4 测试报告](docs/versions/V0.4-test-report.md)
 - [V0.3 版本文档](docs/versions/V0.3.md)
 - [V0.3 测试报告](docs/versions/V0.3-test-report.md)
 - [V0.2.1 历史版本文档](docs/versions/V0.2.1.md)
@@ -71,7 +74,7 @@ GitHub Pages 与 Vercel 配置已准备，具体开通步骤和权限前提见 [
 - [更新日志](CHANGELOG.md)
 - [素材来源](docs/ASSETS.md)
 
-仓库：`git@github.com:YXY614-ASH/personal-site.git`。当前正式归档标签为 `V0.3`，保留 `V0.1`、`V0.2`、`V0.2.1` 标签及远端原始历史。按用户选择仅在本地验收，不进行公网发布。
+仓库：`git@github.com:YXY614-ASH/personal-site.git`。V0.4 独立提交并归档为 `V0.4` 标签，保留此前标签和历史。按用户选择仅在本地验收，不进行公网发布。
 
 ## 浏览器回归
 
@@ -83,4 +86,4 @@ $env:BROWSER_EXECUTABLE = 'C:\Program Files (x86)\Microsoft\Edge\Application\mse
 npm run test:browser
 ```
 
-测试覆盖九个页面、五组视口、交互和真实截图，结果输出到 `artifacts/`。浏览器测试工具不参与站点生产构建。其他机器缺少这些工具时，按开发规则先确认再安装。
+测试覆盖十个页面、五组视口、交互、降级场景和真实截图，结果输出到 `artifacts/`。测试默认不修改已跟踪的预览图；需要刷新预览图时显式设置 `UPDATE_PREVIEW=1`。浏览器测试工具不参与站点生产构建。其他机器缺少这些工具时，按开发规则先确认再安装。

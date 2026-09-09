@@ -33,15 +33,19 @@ try {
 
   await page.goto(origin, { waitUntil: 'networkidle' });
   const heroScreenshot = await page.screenshot({ clip: { x: 0, y: 0, width: 1440, height: 900 } });
-  const preview = path.join(root, 'public/assets/site-preview.webp');
+  const preview = path.join(artifacts, 'site-preview.webp');
   await sharp(heroScreenshot).resize(1000, 625).webp({ quality: 85 }).toFile(preview);
-  await copyFile(preview, path.join(root, 'dist/assets/site-preview.webp'));
+  if (process.env.UPDATE_PREVIEW === '1') {
+    await copyFile(preview, path.join(root, 'public/assets/site-preview.webp'));
+    await copyFile(preview, path.join(root, 'dist/assets/site-preview.webp'));
+  }
 
   for (const viewport of [{ width: 1440, height: 1000 }, { width: 1920, height: 1080 }, { width: 768, height: 1024 }, { width: 390, height: 844 }, { width: 320, height: 740 }]) {
     await page.setViewportSize(viewport);
     for (const route of routes) {
       await page.goto(origin + route.path, { waitUntil: 'networkidle' });
       await page.locator('img').evaluateAll(images => Promise.all(images.map(image => image.decode())));
+      await page.evaluate(() => document.fonts.ready);
       const check = await page.evaluate(() => {
         const visible = element => element.getBoundingClientRect().width > 0 && element.getBoundingClientRect().height > 0;
         return {
@@ -65,6 +69,11 @@ try {
           assert.ok(profile.includes(value), `Missing profile content ${value}: ${route.path}`);
         }
         assert.ok(!profile.includes('教育信息待补充'), `Outdated education placeholder: ${route.path}`);
+      }
+      if (route.active === 'home') {
+        assert.equal(await page.locator('#project-story h3').count(), 6);
+        const heroSource = await page.locator('.hero-image').evaluate(image => image.currentSrc);
+        assert.equal(heroSource.includes('workspace-mobile.webp'), viewport.width <= 760);
       }
       report.pages.push({ path: route.path, viewport, ...check });
       if ([1440, 390].includes(viewport.width)) await page.screenshot({ path: path.join(artifacts, `${route.path.replaceAll('/', '-').replace('.html', '')}-${viewport.width}.png`), fullPage: true });
@@ -95,7 +104,7 @@ try {
   await page.getByRole('searchbox').fill('不存在的笔记');
   assert.equal(await page.locator('#notes-empty').isVisible(), true);
   await page.getByRole('button', { name: '重置筛选' }).click();
-  assert.equal(await page.locator('[data-note]:visible').count(), 1);
+  assert.equal(await page.locator('[data-note]:visible').count(), site.notes.length);
   await page.getByRole('searchbox').fill('第一步');
   assert.equal(await page.locator('[data-note]:visible').count(), 1);
   await page.getByRole('button', { name: 'AI 应用', exact: true }).click();
@@ -104,6 +113,33 @@ try {
   await page.getByRole('link', { name: '从零开始，搭建个人作品集的第一步', exact: true }).click();
   await page.waitForURL('**/notes/building-v0-1/index.html');
   report.interactions.push('Note search, category filter, empty state, reset and article navigation');
+
+  await page.goto(origin + 'notes/index.html?q=PDF%20Agent&category=AI%20应用&sort=oldest');
+  assert.equal(await page.locator('[data-note]:visible').count(), 1);
+  assert.equal(await page.getByRole('combobox', { name: '笔记排序' }).inputValue(), 'oldest');
+  await page.getByRole('button', { name: '清空搜索' }).click();
+  assert.equal(await page.getByRole('searchbox').inputValue(), '');
+  await page.getByRole('button', { name: '全部笔记', exact: true }).click();
+  assert.equal(await page.locator('[data-note]').first().getAttribute('data-date'), '2026-09-08');
+  await page.getByRole('combobox', { name: '笔记排序' }).selectOption('newest');
+  assert.equal(await page.locator('[data-note]').first().getAttribute('data-date'), '2026-09-09');
+  await page.getByRole('searchbox').fill('PDF Agent');
+  await page.reload();
+  assert.equal(await page.getByRole('searchbox').inputValue(), 'PDF Agent');
+  assert.equal(await page.locator('[data-note]:visible').count(), 1);
+  await page.locator('[data-note]:visible h3 a').click();
+  await page.goBack();
+  assert.equal(await page.getByRole('searchbox').inputValue(), 'PDF Agent');
+  report.interactions.push('Multi-word search, URL persistence, reload, history, clear search and both date orders');
+
+  await page.goto(origin + 'notes/chatbot-tools/index.html');
+  await page.getByRole('navigation', { name: '文章目录' }).getByRole('link', { name: '模型不可用时保留本地能力' }).click();
+  await page.waitForURL('**/notes/chatbot-tools/index.html#offline');
+  await page.waitForFunction(() => document.querySelector('.article-toc [aria-current]')?.hash === '#offline');
+  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
+  await page.waitForFunction(() => document.querySelector('progress').value === 100);
+  assert.equal(await page.getByRole('progressbar', { name: '阅读进度' }).count(), 1);
+  report.interactions.push('Article table of contents, current section, reading progress and related notes');
 
   await page.goto(origin + 'resume/index.html');
   assert.equal(await page.getByRole('button', { name: '暂无可下载文件' }).isDisabled(), true);
@@ -124,13 +160,46 @@ try {
   assert.ok((await page.locator('#version-history').innerText()).includes(releaseLabel));
   report.interactions.push('Current release history link and education content across all viewports');
 
-  const noJs = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 1440, height: 1000 } });
+  await page.setViewportSize({ width: 667, height: 375 });
+  await page.goto(origin);
+  await page.getByRole('button', { name: '打开导航菜单' }).click();
+  assert.equal(await page.locator('#mobile-nav a').first().evaluate(link => document.activeElement === link), true);
+  await page.locator('#mobile-nav').getByRole('link', { name: '个人简历' }).click();
+  await page.waitForURL('**/resume/index.html');
+  report.interactions.push('Short landscape mobile menu scrolls, focuses links and reaches the final navigation item');
+
+  const noJs = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const noJsPage = await noJs.newPage();
   await noJsPage.goto(origin);
   await noJsPage.getByRole('link', { name: '探索我的项目' }).click();
   assert.equal(await noJsPage.locator('.project-card').count(), 2);
-  report.interactions.push('Core content and navigation remain available without JavaScript');
+  await noJsPage.locator('.fallback-nav').getByRole('link', { name: '技术笔记' }).click();
+  assert.equal(await noJsPage.locator('[data-note]').count(), site.notes.length);
+  assert.equal(await noJsPage.locator('.notes-tools').isVisible(), false);
+  await noJsPage.locator('[data-note] h3 a').first().click();
+  assert.equal(await noJsPage.locator('.article-toc').isVisible(), true);
+  assert.ok((await noJsPage.locator('[data-reading-body]').innerText()).includes('AST'));
+  report.interactions.push('Mobile navigation, notes and article content remain available without JavaScript');
   await noJs.close();
+
+  const enhanced = await browser.newContext({ viewport: { width: 1440, height: 1000 }, reducedMotion: 'no-preference' });
+  const enhancedPage = await enhanced.newPage();
+  enhancedPage.on('pageerror', error => report.errors.push(error.message));
+  await enhancedPage.goto(origin, { waitUntil: 'networkidle' });
+  await enhancedPage.evaluate(() => document.querySelector('.story-columns').scrollIntoView({ behavior: 'instant' }));
+  await enhancedPage.waitForFunction(() => document.getAnimations().some(animation => animation.playState === 'running'));
+  await enhancedPage.emulateMedia({ reducedMotion: 'reduce' });
+  await enhancedPage.waitForFunction(() => document.getAnimations().every(animation => animation.playState !== 'running'));
+  assert.equal(await enhancedPage.locator('.story-columns').evaluate(element => getComputedStyle(element).opacity), '1');
+  report.interactions.push('Scroll reveal runs with motion enabled and cancels immediately for reduced motion');
+
+  await enhancedPage.route('**/assets/site-preview.webp', route => route.fulfill({ status: 503, contentType: 'text/plain', body: 'Unavailable' }));
+  await enhancedPage.goto(origin + 'projects/index.html', { waitUntil: 'networkidle' });
+  await enhancedPage.waitForSelector('.image-fallback');
+  await enhancedPage.locator('.visual-web').click();
+  await enhancedPage.waitForURL('**/projects/personal-site/index.html');
+  report.interactions.push('Failed project image displays a fallback while its project link remains usable');
+  await enhanced.close();
   assert.deepEqual(report.errors, [], 'Browser errors or failed resources');
   await writeFile(path.join(artifacts, 'browser-report.json'), JSON.stringify(report, null, 2));
   console.log(`Browser validation passed: ${report.pages.length} page/viewport checks; ${report.interactions.length} interaction groups; zero browser errors.`);

@@ -1,4 +1,6 @@
-const version = '0.3.0';
+import { notes } from './notes.mjs';
+
+const version = '0.4.0';
 export const releaseLabel = `V${version.replace(/\.0$/, '')}`;
 
 export const site = {
@@ -52,17 +54,7 @@ export const site = {
       demo: 'index.html'
     }
   ],
-  notes: [
-    {
-      slug: 'building-v0-1',
-      title: '从零开始，搭建个人作品集的第一步',
-      description: '路由、布局、内容与部署：为后续迭代建立一个清晰的起点。',
-      category: '工程实践',
-      date: '2026-09-08',
-      reading: '3 分钟',
-      path: 'notes/building-v0-1/index.html'
-    }
-  ]
+  notes
 };
 
 export const navigation = [

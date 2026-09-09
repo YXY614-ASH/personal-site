@@ -9,7 +9,7 @@ const lucide = requireTool('lucide');
 const sharp = requireTool('sharp');
 const output = path.join(root, 'public/assets');
 await mkdir(output, { recursive: true });
-const names = ['arrow-up-right', 'arrow-right', 'arrow-left', 'arrow-up', 'arrow-down', 'github', 'menu', 'brain-circuit', 'blocks', 'book-open', 'code-2', 'git-branch', 'graduation-cap', 'files', 'message-square-text', 'sparkles', 'search', 'rotate-ccw', 'file-user', 'download', 'file-code', 'terminal', 'globe', 'check', 'circle-dashed', 'calculator'];
+const names = ['arrow-up-right', 'arrow-right', 'arrow-left', 'arrow-up', 'arrow-down', 'github', 'menu', 'brain-circuit', 'blocks', 'book-open', 'code-2', 'git-branch', 'graduation-cap', 'files', 'message-square-text', 'sparkles', 'search', 'rotate-ccw', 'file-user', 'download', 'file-code', 'terminal', 'globe', 'check', 'circle-dashed', 'calculator', 'x'];
 const symbols = names.map(name => {
   const exportName = name === 'github' ? 'GitFork' : name.split('-').map(part => part[0].toUpperCase() + part.slice(1)).join('');
   const nodes = lucide[exportName];
@@ -30,4 +30,6 @@ try { await access(path.join(output, 'site-preview.webp')); } catch {
   // Replaced with an actual rendered site screenshot before release.
   await sharp(await readFile(workspace)).resize(1000, 625).webp({ quality: 80 }).toFile(path.join(output, 'site-preview.webp'));
 }
+await sharp(workspace).resize(1280).webp({ quality: 80 }).toFile(path.join(output, 'workspace-1280.webp'));
+await sharp(workspace).resize(768, 960, { fit: 'cover' }).webp({ quality: 80 }).toFile(path.join(output, 'workspace-mobile.webp'));
 console.log('Prepared local image and Lucide assets. No runtime CDN is required.');

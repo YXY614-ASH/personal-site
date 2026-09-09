@@ -14,7 +14,7 @@ export const routes = [
   { path: 'resume/index.html', title: '个人简历', active: 'resume', render: pages.resume },
   { path: 'projects/knowledge-agent/index.html', title: '本地知识库智能问答', active: 'projects', render: base => pages.projectDetail(base, 'knowledge-agent') },
   { path: 'projects/personal-site/index.html', title: '个人技术作品集', active: 'projects', render: base => pages.projectDetail(base, 'personal-site') },
-  { path: 'notes/building-v0-1/index.html', title: '搭建个人作品集的第一步', active: 'notes', render: pages.article },
+  ...site.notes.map(note => ({ path: note.path, title: note.title, description: note.description, active: 'notes', render: base => pages.article(base, note.slug) })),
   { path: '404.html', title: '页面未找到', active: '404', render: pages.notFound }
 ];
 

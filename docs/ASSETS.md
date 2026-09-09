@@ -7,6 +7,7 @@
 - 原始素材：https://images.unsplash.com/photo-1498050108023-c5249f4df085
 - 许可：https://unsplash.com/license
 - 处理：转为 WebP，最大宽度 1920 px。
+- V0.4 衍生资源：`workspace-1280.webp` 为 1280px 宽，`workspace-mobile.webp` 为 768 × 960 居中裁切，复用同一授权照片；由 `scripts/prepare-assets.mjs` 使用已有 Sharp 生成。
 - 用途：首页开发主题背景。此照片为主题素材，不代表吴佳诣本人的工作环境或项目截图。
 
 ## 项目缩略图
