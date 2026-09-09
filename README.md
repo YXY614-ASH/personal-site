@@ -1,6 +1,6 @@
 # 吴佳诣的个人技术作品集
 
-V0.2.1 个人资料补充版本。吴佳诣，就读于昆明理工大学津桥学院，电气工程及其自动化专业本科，预计 2027 年毕业，主学嵌入式开发、C 语言和 PLC 自动化技术。围绕个人介绍、项目实践、技术笔记与履历建立持续迭代的技术空间。
+V0.3 chatbot 项目接入版本。吴佳诣，就读于昆明理工大学津桥学院，电气工程及其自动化专业本科，预计 2027 年毕业，主学嵌入式开发、C 语言和 PLC 自动化技术。围绕个人介绍、项目实践、技术笔记与履历建立持续迭代的技术空间。
 
 ## 本地运行
 
@@ -27,7 +27,7 @@ npm run preview  # 构建并启动本地预览
 | 项目作品 | `/projects/` | 分类筛选，两个项目展示入口 |
 | 技术笔记 | `/notes/` | 搜索、分类、空状态与一篇版本开发笔记 |
 | 个人简历 | `/resume/` | 资料预览；真实 PDF 尚未提供 |
-| AI 项目 | `/projects/knowledge-agent/` | 展示框架，未接入真实 Demo |
+| AI 项目 | `/projects/knowledge-agent/` | chatbot V0.5 能力、架构和本机 Demo 入口 |
 | 网站项目 | `/projects/personal-site/` | 当前项目说明与 V0.1 / V0.2 / V0.2.1 版本记录 |
 | 开发笔记 | `/notes/building-v0-1/` | V0.1 历史架构与工程记录 |
 | 异常页面 | `/404.html` | 返回首页与导航恢复 |
@@ -63,14 +63,15 @@ dist/               构建产物，不直接提交 Git
 
 GitHub Pages 与 Vercel 配置已准备，具体开通步骤和权限前提见 [部署说明](docs/DEPLOYMENT.md)。本地运行成功不等同于公网部署成功。
 
-- [V0.2.1 版本文档](docs/versions/V0.2.1.md)
-- [V0.2.1 测试报告](docs/versions/V0.2.1-test-report.md)
+- [V0.3 版本文档](docs/versions/V0.3.md)
+- [V0.3 测试报告](docs/versions/V0.3-test-report.md)
+- [V0.2.1 历史版本文档](docs/versions/V0.2.1.md)
 - [V0.2 历史版本文档](docs/versions/V0.2.md)
 - [V0.1 历史版本文档](docs/versions/V0.1.md)
 - [更新日志](CHANGELOG.md)
 - [素材来源](docs/ASSETS.md)
 
-仓库：`git@github.com:YXY614-ASH/personal-site.git`。当前正式归档标签为 `V0.2.1`，保留 `V0.1`、`V0.2` 标签及远端原始历史。按用户选择仅在本地验收，不进行公网发布。
+仓库：`git@github.com:YXY614-ASH/personal-site.git`。当前正式归档标签为 `V0.3`，保留 `V0.1`、`V0.2`、`V0.2.1` 标签及远端原始历史。按用户选择仅在本地验收，不进行公网发布。
 
 ## 浏览器回归
 

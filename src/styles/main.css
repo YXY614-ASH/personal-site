@@ -253,6 +253,13 @@ h3 { font-size: 20px; }
 .check-list { list-style: none; padding: 0; margin: 0; }
 .check-list li { display: flex; gap: 12px; align-items: center; font-size: 14px; color: #6d7966; padding: 8px 0; }
 .check-list .icon { width: 17px; height: 17px; color: var(--green); }
+.capability-list { list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 24px; padding: 0; margin: 0; }
+.capability-list li { display: flex; align-items: center; gap: 9px; color: #6d7966; font-size: 13px; }
+.capability-list .icon { width: 15px; height: 15px; color: var(--green); }
+.demo-panel { display: flex; align-items: center; justify-content: space-between; gap: 20px; border: 1px solid var(--line); background: #eef1e9; padding: 20px; margin-top: 28px; }
+.demo-panel h3 { font-size: 16px; margin-bottom: 4px; }
+.demo-panel p { color: var(--muted); font-size: 12px; margin: 0; }
+.demo-panel .button { flex: 0 0 auto; }
 .project-links { display: flex; align-items: center; gap: 25px; padding-top: 36px; }
 .article-header { padding: 40px 0 25px; border-bottom: 1px solid var(--line); }
 .article-header h1 { font-size: 35px; line-height: 1.5; margin-bottom: 20px; max-width: 700px; }
@@ -384,6 +391,9 @@ code { font-family: Consolas, monospace; }
   .check-list .icon { margin-top: 2px; }
   .project-links { gap: 15px; flex-wrap: wrap; }
   .project-links .muted { font-size: 11px; }
+  .capability-list { grid-template-columns: 1fr; }
+  .demo-panel { display: block; }
+  .demo-panel .button { margin-top: 17px; }
   .article-header h1 { font-size: 28px; }
   .article-header p { font-size: 12px; }
   pre { font-size: 11px; padding: 18px 15px; }

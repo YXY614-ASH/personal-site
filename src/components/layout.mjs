@@ -12,6 +12,10 @@ export function educationDetails() {
   return `<dl class="education-facts"><div><dt>院校</dt><dd>${escapeHtml(site.education.institution)}</dd></div><div><dt>学历</dt><dd>${escapeHtml(site.education.level)}</dd></div><div><dt>专业</dt><dd>${escapeHtml(site.education.major)}</dd></div><div><dt>毕业</dt><dd>${escapeHtml(site.education.graduation)}</dd></div></dl>`;
 }
 
+export function capabilities(values) {
+  return `<ul class="capability-list">${values.map(value => `<li>${icon('check')}${escapeHtml(value)}</li>`).join('')}</ul>`;
+}
+
 export function pageHeading(eyebrow, title, description) {
   return `<header class="page-heading"><span class="eyebrow">${eyebrow}</span><h1>${title}<span class="green-dot">.</span></h1><p>${description}</p></header>`;
 }

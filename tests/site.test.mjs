@@ -71,6 +71,15 @@ test('no private project URLs or fabricated resume download appear in public mar
   assert.match(resume, /简历待上传/);
 });
 
+test('the chatbot project exposes its verified V0.5 capabilities without claiming a public demo', async () => {
+  const html = await readFile(path.join(dist, 'projects/knowledge-agent/index.html'), 'utf8');
+  for (const value of ['V0.5 Agent', 'PDF 资料问答', '题目解析卡', '学习计划卡', '课程助手 Agent', '安全计算器', '本机 Demo', '仓库当前需授权访问']) {
+    assert.match(html, new RegExp(value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')));
+  }
+  assert.ok(html.includes('href="http://127.0.0.1:7861/"'));
+  assert.ok(html.includes('href="https://github.com/YXY614-ASH/chatbot"'));
+});
+
 test('image assets and JavaScript stay within the initial performance budget', async () => {
   assert.ok((await stat(path.join(dist, 'assets/workspace.webp'))).size < 600_000);
   assert.ok((await stat(path.join(dist, 'assets/site-preview.webp'))).size < 250_000);

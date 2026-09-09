@@ -9,7 +9,7 @@ const lucide = requireTool('lucide');
 const sharp = requireTool('sharp');
 const output = path.join(root, 'public/assets');
 await mkdir(output, { recursive: true });
-const names = ['arrow-up-right', 'arrow-right', 'arrow-left', 'arrow-up', 'arrow-down', 'github', 'menu', 'brain-circuit', 'blocks', 'book-open', 'code-2', 'git-branch', 'graduation-cap', 'files', 'message-square-text', 'sparkles', 'search', 'rotate-ccw', 'file-user', 'download', 'file-code', 'terminal', 'globe', 'check', 'circle-dashed'];
+const names = ['arrow-up-right', 'arrow-right', 'arrow-left', 'arrow-up', 'arrow-down', 'github', 'menu', 'brain-circuit', 'blocks', 'book-open', 'code-2', 'git-branch', 'graduation-cap', 'files', 'message-square-text', 'sparkles', 'search', 'rotate-ccw', 'file-user', 'download', 'file-code', 'terminal', 'globe', 'check', 'circle-dashed', 'calculator'];
 const symbols = names.map(name => {
   const exportName = name === 'github' ? 'GitFork' : name.split('-').map(part => part[0].toUpperCase() + part.slice(1)).join('');
   const nodes = lucide[exportName];

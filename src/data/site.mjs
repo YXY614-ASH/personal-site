@@ -1,4 +1,4 @@
-const version = '0.2.1';
+const version = '0.3.0';
 export const releaseLabel = `V${version.replace(/\.0$/, '')}`;
 
 export const site = {
@@ -30,10 +30,14 @@ export const site = {
       description: '围绕本地知识库，探索检索增强生成与智能体工具调用。以 Gradio 承载问答交互，连接文档、检索与大语言模型。',
       tags: ['Python', 'RAG', 'Agent', 'Gradio'],
       category: 'ai',
-      status: '展示筹备中',
+      status: 'V0.5 Agent · 本地可运行',
       path: 'projects/knowledge-agent/index.html',
-      source: null,
-      demo: null
+      source: 'https://github.com/YXY614-ASH/chatbot',
+      demo: 'http://127.0.0.1:7861/',
+      release: 'V0.5',
+      capabilities: ['PDF 资料问答', '题目解析卡', '学习计划卡', '课程助手 Agent', '安全计算器'],
+      architecture: ['Gradio', 'DeepSeek', 'RAG', 'Agent', 'pypdf'],
+      integration: { status: 'local', label: '本机 Demo', note: '仅本机访问；未配置 DeepSeek 密钥时提供本地 PDF 检索与计算器结果。' }
     },
     {
       id: 'personal-site',
