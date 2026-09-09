@@ -1,5 +1,5 @@
-const version = '0.2.0';
-export const releaseLabel = `V${version.split('.').slice(0, 2).join('.')}`;
+const version = '0.2.1';
+export const releaseLabel = `V${version.replace(/\.0$/, '')}`;
 
 export const site = {
   name: '吴佳诣',
@@ -8,12 +8,19 @@ export const site = {
   github: 'https://github.com/YXY614-ASH',
   repository: 'https://github.com/YXY614-ASH/personal-site',
   repositoryPublic: false,
-  description: '吴佳诣的个人技术作品集。记录 AI 应用、Web 开发与持续学习，展示项目实践和技术思考。',
+  description: '吴佳诣的个人技术作品集。昆明理工大学津桥学院电气工程及其自动化专业本科，预计 2027 年毕业，主学嵌入式开发、C 语言和 PLC 自动化技术。',
   resume: null,
   education: {
+    institution: '昆明理工大学津桥学院',
     level: '本科',
-    major: '电气工程及其自动化'
+    major: '电气工程及其自动化',
+    graduation: '预计 2027 年毕业'
   },
+  studyAreas: [
+    { title: '嵌入式开发', icon: 'blocks', description: '学习嵌入式系统的软件开发，关注程序与硬件之间的联系。' },
+    { title: 'C 语言', icon: 'code-2', description: '学习 C 语言编程，在代码实践中积累程序设计基础。' },
+    { title: 'PLC 自动化技术', icon: 'git-branch', description: '学习 PLC 控制与自动化技术，关注控制逻辑和系统运行。' }
+  ],
   directions: ['AI 应用', 'Web 开发', '工程实践'],
   projects: [
     {

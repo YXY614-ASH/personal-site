@@ -9,7 +9,7 @@ export const tags = values => `<div class="tags">${values.map(value => `<span>${
 export const link = (href, label, className = 'text-link', external = false) => `<a class="${className}" href="${href}"${external ? ' target="_blank" rel="noopener noreferrer"' : ''}>${label}${icon(external ? 'arrow-up-right' : 'arrow-right')}</a>`;
 
 export function educationDetails() {
-  return `<dl class="education-facts"><div><dt>学历</dt><dd>${escapeHtml(site.education.level)}</dd></div><div><dt>专业</dt><dd>${escapeHtml(site.education.major)}</dd></div></dl>`;
+  return `<dl class="education-facts"><div><dt>院校</dt><dd>${escapeHtml(site.education.institution)}</dd></div><div><dt>学历</dt><dd>${escapeHtml(site.education.level)}</dd></div><div><dt>专业</dt><dd>${escapeHtml(site.education.major)}</dd></div><div><dt>毕业</dt><dd>${escapeHtml(site.education.graduation)}</dd></div></dl>`;
 }
 
 export function pageHeading(eyebrow, title, description) {

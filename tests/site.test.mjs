@@ -13,6 +13,7 @@ test('package, build metadata, page footers and project status agree on the rele
   const pkg = JSON.parse(await readFile(path.join(root, 'package.json'), 'utf8'));
   const buildInfo = JSON.parse(await readFile(path.join(dist, 'build-info.json'), 'utf8'));
   assert.equal(site.version, pkg.version);
+  assert.equal(releaseLabel, `V${pkg.version.replace(/\.0$/, '')}`);
   assert.equal(buildInfo.version, pkg.version);
   for (const route of routes) {
     const html = await readFile(path.join(dist, route.path), 'utf8');

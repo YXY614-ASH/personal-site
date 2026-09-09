@@ -61,6 +61,9 @@ try {
         const profile = await page.locator('main').innerText();
         assert.ok(profile.includes('本科'), `Missing education level: ${route.path}`);
         assert.ok(profile.includes('电气工程及其自动化'), `Missing major: ${route.path}`);
+        for (const value of ['昆明理工大学津桥学院', '预计 2027 年毕业', '嵌入式开发', 'C 语言', 'PLC 自动化技术']) {
+          assert.ok(profile.includes(value), `Missing profile content ${value}: ${route.path}`);
+        }
         assert.ok(!profile.includes('教育信息待补充'), `Outdated education placeholder: ${route.path}`);
       }
       report.pages.push({ path: route.path, viewport, ...check });
